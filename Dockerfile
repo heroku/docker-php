@@ -60,7 +60,7 @@ extension=sqlite3.so \n\
 extension=pdo_sqlite.so \n\
 extension=xmlrpc.so \n\
 extension=xsl.so\n\
-" >> /app/.heroku/php/etc/php.ini
+" >> /app/.heroku/php/etc/php/php.ini
 
 # Install Composer
 RUN curl --silent --location "https://lang-php.s3.amazonaws.com/dist-cedar-14-master/composer.tar.gz?version=1.0.0-alpha10" | tar xz -C /app/.heroku/php
