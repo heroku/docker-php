@@ -6,8 +6,8 @@ ENV PORT 3000
 
 # Which versions?
 ENV PHP_VERSION 5.6.14
-ENV HTTPD_VERSION 2.4.10
-ENV NGINX_VERSION 1.6.0
+ENV HTTPD_VERSION 2.4.17
+ENV NGINX_VERSION 1.8.0
 
 # Create some needed directories
 RUN mkdir -p /app/.heroku/php /app/.profile.d
