@@ -41,9 +41,11 @@ RUN mkdir -p /app/.heroku/php/etc/php/conf.d
 RUN curl --silent --location https://raw.githubusercontent.com/heroku/heroku-buildpack-php/5a770b914549cf2a897cbbaf379eb5adf410d464/conf/php/php.ini > /app/.heroku/php/etc/php/php.ini
 # Enable all optional exts
 RUN echo "\n\
+user_ini.cache_ttl = 30 \n\
 zend_extension = opcache.so \n\
 opcache.enable_cli = 1 \n\
-opcache.validate_timestamps = 0 \n\
+opcache.validate_timestamps = 1 \n\
+opcache.revalidate_freq = 0 \n\
 opcache.fast_shutdown = 0 \n\
 extension=bcmath.so \n\
 extension=calendar.so \n\
