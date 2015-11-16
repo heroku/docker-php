@@ -5,7 +5,7 @@ FROM heroku/cedar:14
 ENV PORT 3000
 
 # Which versions?
-ENV PHP_VERSION 5.6.14
+ENV PHP_VERSION 5.6.15
 ENV HTTPD_VERSION 2.4.17
 ENV NGINX_VERSION 1.8.0
 
@@ -65,7 +65,7 @@ extension=xsl.so\n\
 " >> /app/.heroku/php/etc/php/php.ini
 
 # Install Composer
-RUN curl --silent --location "https://lang-php.s3.amazonaws.com/dist-cedar-14-master/composer.tar.gz?version=1.0.0-alpha10" | tar xz -C /app/.heroku/php
+RUN curl --silent --location "https://lang-php.s3.amazonaws.com/dist-cedar-14-master/composer-1.0.0alpha11.tar.gz" | tar xz -C /app/.heroku/php
 
 # copy dep files first so Docker caches the install step if they don't change
 ONBUILD COPY composer.lock /app/user/
