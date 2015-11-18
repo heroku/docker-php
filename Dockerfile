@@ -67,6 +67,9 @@ extension=xsl.so\n\
 # Install Composer
 RUN curl --silent --location "https://lang-php.s3.amazonaws.com/dist-cedar-14-master/composer-1.0.0alpha11.tar.gz" | tar xz -C /app/.heroku/php
 
+# Adjust the file permissions in /app/.heroku/php
+RUN chown nobody:root /app/.heroku/php -R
+
 # copy dep files first so Docker caches the install step if they don't change
 ONBUILD COPY composer.lock /app/user/
 ONBUILD COPY composer.json /app/user/
