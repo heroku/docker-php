@@ -70,12 +70,14 @@ RUN curl --silent --location "https://lang-php.s3.amazonaws.com/dist-cedar-14-ma
 # copy dep files first so Docker caches the install step if they don't change
 ONBUILD COPY composer.lock /app/user/
 ONBUILD COPY composer.json /app/user/
-# run install but without scripts as we don't have the app source yet
-ONBUILD RUN composer install --no-scripts
+# run install but without scripts and autoloader as we don't have the app source yet
+ONBUILD RUN composer install --no-scripts --no-autoloader
 # require the buildpack for execution
 ONBUILD RUN composer show --installed heroku/heroku-buildpack-php || { echo 'Your composer.json must have "heroku/heroku-buildpack-php" as a "require-dev" dependency.'; exit 1; }
 # rest of app
 ONBUILD ADD . /app/user/
+# generate autoloader
+ONBUILD RUN composer dump-autoload --optimize
 # run install hooks
 ONBUILD RUN cat composer.json | python -c 'import sys,json; sys.exit("post-install-cmd" not in json.load(sys.stdin).get("scripts", {}));' && composer run-script post-install-cmd || true
 
