@@ -23,7 +23,7 @@ at least these contents:
 Install the heroku-docker toolbelt plugin:
 
 ```sh-session
-$ heroku plugins:install heroku-docker
+$ heroku plugins:install heroku-container-tools
 ```
 
 Initialize your app:
